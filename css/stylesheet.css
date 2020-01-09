@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    background-color: rgb(12, 11, 22);
+}
+
+#container{
+    position: absolute;
+    left:0;
+    top:0;
+    right: 0;
+    bottom: 0;
+}
+
+@font-face {
+	font-family: novasquare;
+	src: url(../assets/fonts/novasquare/NovaSquare-Regular.ttf) format("truetype");
+  }
+
