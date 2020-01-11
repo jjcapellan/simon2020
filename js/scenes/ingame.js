@@ -55,15 +55,12 @@ class InGame extends Phaser.Scene {
     let t = this;
     let s = t.sc;
     let styleDark = { fontFamily: 'novasquare', fontSize: 20 * s, color: '#000000', lineSpacing: -10 * s };
-    let styleLight = { fontFamily: 'novasquare', fontSize: 20 * s, color: '#000000', lineSpacing: -10 * s };
 
     t.add.image(0, 0, 'atlas', 'base').setOrigin(0, 0);
 
-    t.txtScore = t.add.text(180 * s, 495 * s, '--', styleDark)
-      .setOrigin(0.5, 0.5);
+    t.txtScore = t.add.text(180 * s, 495 * s, '--', styleDark);
     t.txtHighScore = t.add.text(285 * s, 495 * s, `${t.highScore}`, styleDark).setColor('#ffffff')
-      .setAlpha(0.5)
-      .setOrigin(0.5, 0.5);
+      .setAlpha(0.5);
   }
 
   addLeds() {

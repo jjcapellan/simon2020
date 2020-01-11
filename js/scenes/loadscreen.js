@@ -14,8 +14,7 @@ class LoadScreen extends Phaser.Scene {
         this.load.on('progress', this.updateLoad, this);
         let logo = this.add.image(this.game.config.width / 2, this.game.config.height / 3, 'logo');
         let style = { fontFamily: 'novasquare', fontSize: 20, color: '#ffffff', lineSpacing: -10 };
-        this.text_loading = this.add.text(logo.x, logo.y + logo.height, 'Loading assets...', style)
-            .setOrigin(0.5, 0.5);
+        this.text_loading = this.add.text(logo.x, logo.y + logo.height, 'Loading assets...', style);
 
         this.load.atlas('atlas', `assets/imgs/${this.imgFolder}/simon.png`, `assets/imgs/${this.imgFolder}/simonatlas.json`);
 
