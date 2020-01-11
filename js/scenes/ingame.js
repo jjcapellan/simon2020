@@ -69,7 +69,6 @@ class InGame extends Phaser.Scene {
     t.ledPlayer = new Led(t, 45 * s, 477 * s, 'greenhalo');
     t.ledCpu = new Led(t, 45 * s, 494 * s, 'greenhalo');
     t.ledGameOver = new Led(t, 45 * s, 511 * s, 'redhalo');
-    t.ledGameOver.turnOn();
   }
 
   addUiButtons() {
