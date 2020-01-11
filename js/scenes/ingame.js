@@ -22,7 +22,7 @@ class InGame extends Phaser.Scene {
     t.addFront();
     t.addLeds();
     t.addUiButtons();
-    t.addTweens();    
+    t.addTweens();
   }
 
 
@@ -58,8 +58,10 @@ class InGame extends Phaser.Scene {
 
     t.add.image(0, 0, 'atlas', 'base').setOrigin(0, 0);
 
-    t.txtScore = t.add.text(180 * s, 495 * s, '--', styleDark);
+    t.txtScore = t.add.text(180 * s, 495 * s, '--', styleDark)
+      .setOrigin(0.5, 0.5);
     t.txtHighScore = t.add.text(285 * s, 495 * s, `${t.highScore}`, styleDark).setColor('#ffffff')
+      .setOrigin(0.5, 0.5)
       .setAlpha(0.5);
   }
 

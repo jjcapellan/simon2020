@@ -53,9 +53,8 @@ class Led extends Phaser.GameObjects.Image {
     }
 
   }class GButton extends Phaser.GameObjects.Image {
-  constructor(scene, x, y, frame, { ox, oy }, sound) {
+  constructor(scene, x, y, frame, sound) {
     super(scene, x, y, 'atlas', frame);
-    this.setOrigin(ox, oy);
     this.setInteractive();
     this.setAlpha(0.1);
     this.id = parseInt(sound.substr(sound.length - 1)) - 1;
@@ -169,13 +168,7 @@ class Led extends Phaser.GameObjects.Image {
         }
     }
 
-  }/**
- * Load the necessary assets for the load screen.
- *
- * @class Boot
- * @extends {Phaser.Scene}
- */
-class Boot extends Phaser.Scene {
+  }class Boot extends Phaser.Scene {
   constructor() {
     super('boot');
   }
@@ -225,8 +218,7 @@ class LoadScreen extends Phaser.Scene {
         this.load.on('progress', this.updateLoad, this);
         let logo = this.add.image(this.game.config.width / 2, this.game.config.height / 3, 'logo');
         let style = { fontFamily: 'novasquare', fontSize: 20, color: '#ffffff', lineSpacing: -10 };
-        this.text_loading = this.add.text(logo.x, logo.y + logo.height, 'Loading assets...', style)
-            .setOrigin(0.5, 0.5);
+        this.text_loading = this.add.text(logo.x, logo.y + logo.height, 'Loading assets...', style);
 
         this.load.atlas('atlas', `assets/imgs/${this.imgFolder}/simon.png`, `assets/imgs/${this.imgFolder}/simonatlas.json`);
 
@@ -269,7 +261,7 @@ class InGame extends Phaser.Scene {
     t.addFront();
     t.addLeds();
     t.addUiButtons();
-    t.addTweens();    
+    t.addTweens();
   }
 
 
@@ -288,10 +280,10 @@ class InGame extends Phaser.Scene {
   addButtons() {
     let t = this;
     let s = t.sc;
-    t.b1 = new GButton(this, 112 * s, 151 * s, 'backlight', { ox: 0.5, oy: 0.5 }, 'note1'); //ul
-    t.b2 = new GButton(this, 246 * s, 151 * s, 'backlight', { ox: 0.5, oy: 0.5 }, 'note2'); // ur
-    t.b3 = new GButton(this, 112 * s, 331 * s, 'backlight', { ox: 0.5, oy: 0.5 }, 'note3'); // dl
-    t.b4 = new GButton(this, 246 * s, 331 * s, 'backlight', { ox: 0.5, oy: 0.5 }, 'note4'); // dr
+    t.b1 = new GButton(this, 112 * s, 151 * s, 'backlight', 'note1'); // ul
+    t.b2 = new GButton(this, 246 * s, 151 * s, 'backlight', 'note2'); // ur
+    t.b3 = new GButton(this, 112 * s, 331 * s, 'backlight', 'note3'); // dl
+    t.b4 = new GButton(this, 246 * s, 331 * s, 'backlight', 'note4'); // dr
 
     t.buttons = [t.b1, t.b2, t.b3, t.b4];
 
@@ -302,15 +294,14 @@ class InGame extends Phaser.Scene {
     let t = this;
     let s = t.sc;
     let styleDark = { fontFamily: 'novasquare', fontSize: 20 * s, color: '#000000', lineSpacing: -10 * s };
-    let styleLight = { fontFamily: 'novasquare', fontSize: 20 * s, color: '#000000', lineSpacing: -10 * s };
 
     t.add.image(0, 0, 'atlas', 'base').setOrigin(0, 0);
 
     t.txtScore = t.add.text(180 * s, 495 * s, '--', styleDark)
       .setOrigin(0.5, 0.5);
     t.txtHighScore = t.add.text(285 * s, 495 * s, `${t.highScore}`, styleDark).setColor('#ffffff')
-      .setAlpha(0.5)
-      .setOrigin(0.5, 0.5);
+      .setOrigin(0.5, 0.5)
+      .setAlpha(0.5);
   }
 
   addLeds() {
@@ -319,7 +310,6 @@ class InGame extends Phaser.Scene {
     t.ledPlayer = new Led(t, 45 * s, 477 * s, 'greenhalo');
     t.ledCpu = new Led(t, 45 * s, 494 * s, 'greenhalo');
     t.ledGameOver = new Led(t, 45 * s, 511 * s, 'redhalo');
-    t.ledGameOver.turnOn();
   }
 
   addUiButtons() {
