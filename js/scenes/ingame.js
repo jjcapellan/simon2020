@@ -41,10 +41,10 @@ class InGame extends Phaser.Scene {
   addButtons() {
     let t = this;
     let s = t.sc;
-    t.b1 = new GButton(this, 112 * s, 151 * s, 'backlight', { ox: 0.5, oy: 0.5 }, 'note1'); //ul
-    t.b2 = new GButton(this, 246 * s, 151 * s, 'backlight', { ox: 0.5, oy: 0.5 }, 'note2'); // ur
-    t.b3 = new GButton(this, 112 * s, 331 * s, 'backlight', { ox: 0.5, oy: 0.5 }, 'note3'); // dl
-    t.b4 = new GButton(this, 246 * s, 331 * s, 'backlight', { ox: 0.5, oy: 0.5 }, 'note4'); // dr
+    t.b1 = new GButton(this, 112 * s, 151 * s, 'backlight', 'note1'); // ul
+    t.b2 = new GButton(this, 246 * s, 151 * s, 'backlight', 'note2'); // ur
+    t.b3 = new GButton(this, 112 * s, 331 * s, 'backlight', 'note3'); // dl
+    t.b4 = new GButton(this, 246 * s, 331 * s, 'backlight', 'note4'); // dr
 
     t.buttons = [t.b1, t.b2, t.b3, t.b4];
 

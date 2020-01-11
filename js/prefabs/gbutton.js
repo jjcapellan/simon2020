@@ -1,7 +1,6 @@
 class GButton extends Phaser.GameObjects.Image {
-  constructor(scene, x, y, frame, { ox, oy }, sound) {
+  constructor(scene, x, y, frame, sound) {
     super(scene, x, y, 'atlas', frame);
-    this.setOrigin(ox, oy);
     this.setInteractive();
     this.setAlpha(0.1);
     this.id = parseInt(sound.substr(sound.length - 1)) - 1;
