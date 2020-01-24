@@ -1,0 +1,44 @@
+{
+    "spritemap": {
+        "click": {
+            "start": 0,
+            "end": 0.046,
+            "loop": false
+        },
+        "error": {
+            "start": 0.046,
+            "end": 0.597,
+            "loop": false
+        },
+        "led": {
+            "start": 0.597,
+            "end": 0.654,
+            "loop": false
+        },
+        "note1": {
+            "start": 0.654,
+            "end": 1.215,
+            "loop": false
+        },
+        "note2": {
+            "start": 1.215,
+            "end": 1.776,
+            "loop": false
+        },
+        "note3": {
+            "start": 1.776,
+            "end": 2.337,
+            "loop": false
+        },
+        "note4": {
+            "start": 2.337,
+            "end": 2.898,
+            "loop": false
+        },
+        "score": {
+            "start": 2.898,
+            "end": 3.242,
+            "loop": false
+        }
+    }
+}

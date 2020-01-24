@@ -17,7 +17,6 @@ class InGame extends Phaser.Scene {
   create() {
     let t = this;
 
-    t.addSounds();
     t.addButtons();
     t.addFront();
     t.addLeds();
@@ -29,14 +28,6 @@ class InGame extends Phaser.Scene {
 
   // GAME OBJECTS ///////////////////////////////////////
   ///////////////////////////////////////////////////////
-
-  addSounds() {
-    let t = this;
-    t.sndScore = t.sound.add('score');
-    t.sndError = t.sound.add('error');
-    t.sndClick = t.sound.add('click');
-    t.sndLed = t.sound.add('led');
-  }
 
   addButtons() {
     let t = this;
@@ -158,6 +149,7 @@ class InGame extends Phaser.Scene {
     t.highScore = score;
     t.txtHighScore.setText(`${t.highScore}`);
     t.twHighScore.play();
+
   }
 
 

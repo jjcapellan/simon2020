@@ -4,7 +4,7 @@ class GButton extends Phaser.GameObjects.Image {
     this.setInteractive();
     this.setAlpha(0.1);
     this.id = parseInt(sound.substr(sound.length - 1)) - 1;
-    this.sound = this.scene.sound.add(sound);
+    this.sound = sound;
     this.tween;
 
     this.init();
@@ -38,7 +38,7 @@ class GButton extends Phaser.GameObjects.Image {
     t.scene.lastNote = t.id;
     t.tween.play();
     if (typeof isMachine == 'boolean') {
-      t.sound.play();
+      t.scene.sound.playAudioSprite('sounds', t.sound);
       setTimeout(() => {
         if(!t.scene.onGame)return;
         t.scene.currentNote++;
@@ -46,20 +46,20 @@ class GButton extends Phaser.GameObjects.Image {
       }, 600);
     } else {
       if (!t.checkNote()) {
-        t.scene.sndError.play();
+        t.scene.sound.playAudioSprite('sounds', 'error');
         t.scene.ledPlayer.turnOff();
         t.scene.endGame();
         return;
       }
 
-      t.sound.play();
+      t.scene.sound.playAudioSprite('sounds',t.sound);
       t.scene.noteIndex++;
       if (t.scene.noteIndex > t.scene.notes.length - 1) {
         t.scene.disableButtons();
         setTimeout(() => {
           if(!t.scene.onGame)return;
           t.scene.upScore();
-          t.scene.sndScore.play();
+          t.scene.sound.playAudioSprite('sounds','score');
         }, 400);
         setTimeout(() => {
           if(!t.scene.onGame)return;

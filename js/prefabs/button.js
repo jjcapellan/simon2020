@@ -7,7 +7,7 @@ class Button extends Phaser.GameObjects.Image {
     }
 
     click(){
-        this.scene.sndClick.play();
+        this.scene.sound.playAudioSprite('sounds','click');
         this.setAlpha(1);
         setTimeout(()=>{
             this.setAlpha(0.01);
@@ -15,7 +15,7 @@ class Button extends Phaser.GameObjects.Image {
     }
 
     toggle(){
-        this.scene.sndClick.play();
+        this.scene.sound.playAudioSprite('sounds','click');
         if(this.alpha == 1){
             this.setAlpha(0.1);
         } else {

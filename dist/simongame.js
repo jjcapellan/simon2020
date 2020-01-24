@@ -34,14 +34,14 @@ class Led extends Phaser.GameObjects.Image {
         ease: 'Cubic',
         yoyo: true,
         repeat: 3,
-        onRepeat: ()=> { t.scene.sndLed.play() },
+        onRepeat: ()=> { t.scene.sound.playAudioSprite('sounds','led'); },
         paused: true
       });
     }
 
     turnOn(){
         this.twOn.play();
-        this.scene.sndLed.play();
+        this.scene.sound.playAudioSprite('sounds','led');
     }
 
     turnOff(){
@@ -58,7 +58,7 @@ class Led extends Phaser.GameObjects.Image {
     this.setInteractive();
     this.setAlpha(0.1);
     this.id = parseInt(sound.substr(sound.length - 1)) - 1;
-    this.sound = this.scene.sound.add(sound);
+    this.sound = sound;
     this.tween;
 
     this.init();
@@ -92,7 +92,7 @@ class Led extends Phaser.GameObjects.Image {
     t.scene.lastNote = t.id;
     t.tween.play();
     if (typeof isMachine == 'boolean') {
-      t.sound.play();
+      t.scene.sound.playAudioSprite('sounds', t.sound);
       setTimeout(() => {
         if(!t.scene.onGame)return;
         t.scene.currentNote++;
@@ -100,20 +100,20 @@ class Led extends Phaser.GameObjects.Image {
       }, 600);
     } else {
       if (!t.checkNote()) {
-        t.scene.sndError.play();
+        t.scene.sound.playAudioSprite('sounds', 'error');
         t.scene.ledPlayer.turnOff();
         t.scene.endGame();
         return;
       }
 
-      t.sound.play();
+      t.scene.sound.playAudioSprite('sounds',t.sound);
       t.scene.noteIndex++;
       if (t.scene.noteIndex > t.scene.notes.length - 1) {
         t.scene.disableButtons();
         setTimeout(() => {
           if(!t.scene.onGame)return;
           t.scene.upScore();
-          t.scene.sndScore.play();
+          t.scene.sound.playAudioSprite('sounds','score');
         }, 400);
         setTimeout(() => {
           if(!t.scene.onGame)return;
@@ -152,7 +152,7 @@ class Led extends Phaser.GameObjects.Image {
     }
 
     click(){
-        this.scene.sndClick.play();
+        this.scene.sound.playAudioSprite('sounds','click');
         this.setAlpha(1);
         setTimeout(()=>{
             this.setAlpha(0.01);
@@ -160,7 +160,7 @@ class Led extends Phaser.GameObjects.Image {
     }
 
     toggle(){
-        this.scene.sndClick.play();
+        this.scene.sound.playAudioSprite('sounds','click');
         if(this.alpha == 1){
             this.setAlpha(0.1);
         } else {
@@ -221,15 +221,8 @@ class LoadScreen extends Phaser.Scene {
         this.text_loading = this.add.text(logo.x, logo.y + logo.height, 'Loading assets...', style);
 
         this.load.atlas('atlas', `assets/imgs/${this.imgFolder}/simon.png`, `assets/imgs/${this.imgFolder}/simonatlas.json`);
-
-        this.load.audio('note1', 'assets/sounds/note1.mp3');
-        this.load.audio('note2', 'assets/sounds/note2.mp3');
-        this.load.audio('note3', 'assets/sounds/note3.mp3');
-        this.load.audio('note4', 'assets/sounds/note4.mp3');
-        this.load.audio('score', 'assets/sounds/score.mp3');
-        this.load.audio('error', 'assets/sounds/error.mp3');
-        this.load.audio('click', 'assets/sounds/click.mp3');
-        this.load.audio('led', 'assets/sounds/led.mp3');
+        
+        this.load.audioSprite('sounds','assets/sounds/audiospritesimon.json','assets/sounds/audiospritesimon.mp3');
 
     }
 
@@ -256,7 +249,6 @@ class InGame extends Phaser.Scene {
   create() {
     let t = this;
 
-    t.addSounds();
     t.addButtons();
     t.addFront();
     t.addLeds();
@@ -268,14 +260,6 @@ class InGame extends Phaser.Scene {
 
   // GAME OBJECTS ///////////////////////////////////////
   ///////////////////////////////////////////////////////
-
-  addSounds() {
-    let t = this;
-    t.sndScore = t.sound.add('score');
-    t.sndError = t.sound.add('error');
-    t.sndClick = t.sound.add('click');
-    t.sndLed = t.sound.add('led');
-  }
 
   addButtons() {
     let t = this;
@@ -397,6 +381,7 @@ class InGame extends Phaser.Scene {
     t.highScore = score;
     t.txtHighScore.setText(`${t.highScore}`);
     t.twHighScore.play();
+
   }
 
 

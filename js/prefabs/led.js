@@ -34,14 +34,14 @@ class Led extends Phaser.GameObjects.Image {
         ease: 'Cubic',
         yoyo: true,
         repeat: 3,
-        onRepeat: ()=> { t.scene.sndLed.play() },
+        onRepeat: ()=> { t.scene.sound.playAudioSprite('sounds','led'); },
         paused: true
       });
     }
 
     turnOn(){
         this.twOn.play();
-        this.scene.sndLed.play();
+        this.scene.sound.playAudioSprite('sounds','led');
     }
 
     turnOff(){

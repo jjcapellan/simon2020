@@ -17,15 +17,8 @@ class LoadScreen extends Phaser.Scene {
         this.text_loading = this.add.text(logo.x, logo.y + logo.height, 'Loading assets...', style);
 
         this.load.atlas('atlas', `assets/imgs/${this.imgFolder}/simon.png`, `assets/imgs/${this.imgFolder}/simonatlas.json`);
-
-        this.load.audio('note1', 'assets/sounds/note1.mp3');
-        this.load.audio('note2', 'assets/sounds/note2.mp3');
-        this.load.audio('note3', 'assets/sounds/note3.mp3');
-        this.load.audio('note4', 'assets/sounds/note4.mp3');
-        this.load.audio('score', 'assets/sounds/score.mp3');
-        this.load.audio('error', 'assets/sounds/error.mp3');
-        this.load.audio('click', 'assets/sounds/click.mp3');
-        this.load.audio('led', 'assets/sounds/led.mp3');
+        
+        this.load.audioSprite('sounds','assets/sounds/audiospritesimon.json','assets/sounds/audiospritesimon.mp3');
 
     }
 
